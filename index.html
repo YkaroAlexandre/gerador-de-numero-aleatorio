@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Números</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body id="container">
+
+    <div id="div_title" >
+        <h1>Gerador de número aleatórios</h1>
+    </div>
+    
+
+    <div class="div_num">
+        <div id="div_num" >
+            00
+        </div>
+    </div>
+
+    <div id="div_input">
+
+        <div class="div_min_max">
+            <p>Mínimo:</p>
+            <input type="text" name="min" class="input_min_max" id="input_min" placeholder="Ex.: 0">
+        </div>
+        <div class="div_min_max">
+            <p>Máximo:</p>
+            <input type="text" name="max" class="input_min_max" id="input_max" placeholder="Ex.: 100">
+        </div>
+    </div>
+    <div class="div_btn">
+        <input type="button" value="Resetar" id="btn_reset" onclick="reset()">
+        <input type="button" value="Gerar" id="btn_submit" onclick="submit()">
+    </div>
+    <div id="div_error">
+        
+    </div>
+    <div id="confetti-container"></div>
+    <script src="./script.js"></script>
+
+
+</body>
+</html>
