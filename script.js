@@ -1,22 +1,22 @@
 function submit(){
+
+    var historico = document.getElementById('div_historico');
+
+    var divNum = document.getElementById('div_num');
+
+    // Pegando o mínimo e passando para inteiro.
     var min = document.getElementById('input_min').value;
-
-    var max = document.getElementById('input_max').value;
-
     min = parseInt(min);
+
+    // Pegando o máximo e passando para inteiro.
+    var max = document.getElementById('input_max').value;
     max = parseInt(max);
 
+    // Lista para colocar os números que vão aparecer antes de mostrar o número randômico.
     listSorteio = [];
-    
     for (var i = 0; i <= 100; i++) {
         listSorteio.push(i);
     };
-
-    var listNum = [];
-    for(var i = min;i < max+1; i++){
-        listNum.push(i)
-    };
-
 
     if (isNaN(min) || isNaN(max)) {
 
@@ -24,19 +24,13 @@ function submit(){
         
         error.innerHTML = "Coloque valores válidos nos campos acima!";
 
+        // Função para recarregar a página.
         setTimeout(() => {
             location.reload();
         }, 5000);
+    } else {
 
-    };
-
-    var divNum = document.getElementById('div_num');
-
-    var numeroGerado = min + Math.floor(Math.random() * ((max-min) + 1));
-
-
-    // Exibe os números antes do sorteio
-    setTimeout(() => {
+        // Exibe os números antes do sorteio, para dar um efeito de roleta.
         for (var i = 0; i < listSorteio.length; i++) {
             (function (index) {
                 setTimeout(() => {
@@ -45,19 +39,39 @@ function submit(){
                 }, 10 * index);
             })(i);
         }
+
+        
     
-    },520);
-    
-    
-    // Sorteia um número aleatório do array e exibe
-    setTimeout(() => {
-        var numeroSorteado = listNum[Math.floor(Math.random() * listNum.length)];
-        divNum.innerHTML = numeroSorteado;
-        exibirConfetes();
-    }, 2000  );
+        // Sorteia um número aleatório do array e exibe
+        setTimeout(() => {
+            showDivHistorico(document.getElementById('div_historico'))
+            var numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+            divNum.innerHTML = numeroSorteado;
+            historico.innerHTML += numeroSorteado + "<br>"
+        }, 1300  );
+    };
+};
+
+// Função para apagar os dados.
+function reset (){
+    document.getElementById('input_max').value = '';
+
+    document.getElementById('input_min').value = '';
+
+    document.getElementById('div_num').innerHTML = '00'
+
+    document.getElementById('div_historico').innerHTML = ''
+
+    hideDivHistorico(document.getElementById('div_historico'))
+};
+
+// Função para mostrar o histórico.
+function showDivHistorico(div){
+    div.style.display = 'flex';
 }
 
+// Função para esconder histórico.
+function hideDivHistorico(div){
+    div.style.display = 'none';
 
-function reset (){
-    
 }
